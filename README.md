@@ -28,23 +28,6 @@
 - **Контейнеризация:** Docker, Docker Compose  
 - **Тестирование:** pytest, pytest-cov
 
-## Структура проекта
-D:\avito\
-├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
-└── backend\
-    └── app\
-         ├── main.py
-         ├── models.py
-         ├── schemas.py
-         ├── database.py
-         └── routers\
-             ├── auth.py
-             ├── users.py
-             ├── transactions.py
-             └── merch.py
-
 ## Установка и запуск
 
 1. **Клонируйте репозиторий:**
