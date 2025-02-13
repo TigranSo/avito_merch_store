@@ -63,6 +63,13 @@ api: доступен на http://localhost:8080.
 Проверьте работу API: Откройте http://localhost:8080/docs – это Swagger UI, где можно протестировать доступные эндпоинты.
 
 Тестирование
+
+ВАЖНО!
+
+Для теста нужно будет открыть файл alembic.ini  и там строку закомментировать  sqlalchemy.url = postgresql://admin:123@db/merch_store 
+
+и  раскомментировать  # sqlalchemy.url = sqlite:///./test.db (Чтобы использовать sqlite базу для теста)
+
 Создайте виртуальное окружение:
 
 python -m venv venv
