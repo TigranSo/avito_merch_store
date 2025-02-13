@@ -37,11 +37,14 @@
    cd your_repository
 
 Создайте файл .env в корне проекта если его не будет(я его оставил там не хранится важные данные)
+
 Содержимое файла:
 DATABASE_URL=postgresql://admin:123@db/merch_store
+
 SECRET_KEY=your_secret
 
 Запустите Docker Compose:
+
 docker-compose up --build
 
 Контейнеры будут запущены:
