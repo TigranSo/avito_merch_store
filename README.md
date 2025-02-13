@@ -40,3 +40,69 @@
    ```bash
    git clone https://github.com/TigranSo/avito_merch_store.git
    cd avito_merch_store
+
+
+Создайте файл .env в корне проекта, если его нет (я оставил пример, в нем не содержатся важные данные):
+
+Содержимое файла:
+
+DATABASE_URL=postgresql://admin:123@db/merch_store
+
+SECRET_KEY=your_secret
+
+Запустите Docker Compose для создания и запуска контейнеров:
+
+docker-compose up --build
+
+Контейнеры будут запущены:
+
+db: PostgreSQL, доступен на порту 5432.
+
+api: доступен на http://localhost:8080.
+
+Проверьте работу API: Откройте http://localhost:8080/docs – это Swagger UI, где можно протестировать доступные эндпоинты.
+
+Тестирование
+Создайте виртуальное окружение:
+
+python -m venv venv
+Активируйте виртуальное окружение:
+
+На Windows:
+
+venv\Scripts\activate
+
+На macOS/Linux:
+source venv/bin/activate
+
+Установите зависимости:
+
+pip install -r requirements.txt
+
+Запустите тесты с использованием pytest:
+
+pytest --maxfail=1 --disable-warnings -q --cov=backend
+
+Тесты покрывают более 80% кода проекта.
+
+Проблемы и решения
+
+При запуске API таблицы создавались автоматически в событии startup в файле backend/app/main.py:
+
+
+@app.on_event("startup")
+def on_startup():
+    Base.metadata.create_all(bind=engine)
+    # Инициализация мерча (если таблица пустая)
+    ...
+    
+Это решение позволило избежать проблем с отсутствующими таблицами в базе данных.
+
+В переменной окружения DATABASE_URL использовалось значение postgresql://admin:123@db/merch_store. Были проверены файлы .env и alembic.ini (если они используются) на корректную кодировку UTF-8, чтобы избежать ошибок Unicode.
+
+Заключение
+
+В репозитории содержатся:
+
+Код сервиса – все файлы проекта находятся в ветке main.
+Docker Compose – файл docker-compose.yml готов к запуску. Инструкция по запуску описана выше.
